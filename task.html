@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .ic-dropdown {
+                position: relative;
+                display: none;
+                list-style-type: none;
+                border: 1px solid #ccc;
+                height: 13%;
+                width: 13%;
+                line-height: 90px;
+            }
+            ul li div{
+                width: 30px;
+                height: 30px;
+            }
+            ul li{
+                display: inline-flex;
+            }
+            .red{
+                background:#f00;
+            }
+            .green{
+                background:#0f0;
+            }
+            .yellow{
+                background: yellow;
+            }
+            #error-msg{
+                display: none;
+            }
+
+            #box-yellow:hover , #box-red:hover, #box-green:hover {
+                border: 2px solid #ccc;
+            }
+            
+        </style>
+    </head>
+<body>
+
+<!-- Button -->
+<button type="button">Css Save</button><br><br>
+
+
+<!-- Color picker -->
+<div>
+    <input type="text" id="txtbox" onfocus="myFunction(this)"><br/>
+    <span id="error-msg" style="color:red">Please Select A Color</span>
+
+    <ul class="ic-dropdown" id="ic-drop">
+        <li onclick="selectedColor('yellow')"><div class="yellow" id="box-yellow" onmouseover="inFun('yellow')" onmouseout="outFun('yellow')"></div></li>
+        <li onclick="selectedColor('red')"><div class="red" id="box-red" onmouseover="inFun('red')" onmouseout="outFun('red')"></div></li>
+        <li onclick="selectedColor('green')"><div class="green" id="box-green" onmouseover="inFun('green')" onmouseout="outFun('green')"></div></li>
+    </ul>
+</div>
+<br><br>
+
+
+<!-- Carousel -->
+<div class="" style="display: inline-flex;">
+    <button type="button" id="pre-btn" onclick="prevFunction()">Prev</button>
+    <img src="1.jpg" id="0" style="width:300px;"/>
+    <img src="2.jpg" id="1" style="width:300px;display: none"/>
+    <img src="3.jpg" id="2" style="width:300px;display: none"/>
+    <img src="4.jpg" id="3" style="width:300px;display: none"/>
+    <button type="button" id="next-btn" onclick="nextFunction()">Next</button>
+</div>
+
+<script>
+    var count = 0;
+    document.getElementById("pre-btn").disabled = true;
+    function myFunction(x) {
+        document.getElementById('ic-drop').style.display = 'block';
+        document.getElementById('error-msg').style.display = 'block';
+    }
+
+    function selectedColor(color){
+
+        switch(color){
+            case 'yellow':
+                document.getElementById('box-green').style.border = 'none';
+                document.getElementById('box-yellow').style.border = '2px solid blue';
+                break;
+            case 'red':
+                document.getElementById('box-yellow').style.border = 'none';
+                document.getElementById('box-red').style.border = '2px solid blue';
+                break;
+            case 'green':
+                document.getElementById('box-yellow').style.border = 'none';
+                document.getElementById('box-red').style.border = 'none';
+                document.getElementById('box-green').style.border = '2px solid blue';
+                break;
+            default: 
+                
+        }
+        document.getElementById('error-msg').style.display = 'none';
+        document.getElementById('txtbox').value = color;
+    }
+
+    function inFun(color){
+        switch(color){
+            case 'yellow':
+                document.getElementById('box-yellow').style.border = '2px solid #ccc';
+                break;
+            case 'red':
+                document.getElementById('box-red').style.border = '2px solid #ccc';
+                break;
+            case 'green':
+                document.getElementById('box-green').style.border = '2px solid #ccc';
+                break;
+            default: 
+        }
+    }
+
+    function outFun(color){
+        switch(color){
+            case 'yellow':
+                document.getElementById('box-yellow').style.border = 'none';
+                break;
+            case 'red':
+                document.getElementById('box-red').style.border = 'none';
+                break;
+            case 'green':
+                document.getElementById('box-green').style.border = 'none';
+                break;
+            default: 
+        }
+    }
+    
+    function prevFunction(){
+        document.getElementById("next-btn").disabled = false;
+        switch(count){
+            case 0:
+                document.getElementById(count).style.display = 'none';
+                count--;
+                document.getElementById(count).style.display = 'block';
+                break;
+            case 1:
+                document.getElementById(count).style.display = 'none';
+                document.getElementById("pre-btn").disabled = true;
+                count--;
+                document.getElementById(count).style.display = 'block';
+                break;
+            case 2:
+                document.getElementById(count).style.display = 'none';
+                
+                count--;
+                document.getElementById(count).style.display = 'block';
+                break;
+            case 3:
+                document.getElementById(count).style.display = 'none';
+                count--;
+                document.getElementById(count).style.display = 'block';
+                break;
+        }
+    }
+   
+    function nextFunction(){
+        document.getElementById("pre-btn").disabled = false;
+        switch(count){
+            case 0:
+                document.getElementById(count).style.display = 'none';
+                count++;
+                document.getElementById(count).style.display = 'block';
+                break;
+            case 1:
+                document.getElementById(count).style.display = 'none';
+                count++;
+                document.getElementById(count).style.display = 'block';
+                break;
+            case 2:
+                document.getElementById(count).style.display = 'none';
+                document.getElementById("next-btn").disabled = true;
+                count++;
+                document.getElementById(count).style.display = 'block';
+                break;
+            case 3:
+                document.getElementById(count).style.display = 'none';
+                count++;
+                document.getElementById(count).style.display = 'block';
+                break;
+        }
+    }
+</script>
+</body>
+</html>
